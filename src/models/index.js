@@ -1,5 +1,6 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import playlist from './playlist'
+import playlistItem from './playlistItem'
 
 export const sequelize = new Sequelize(
     process.env.DATABASE,
@@ -15,13 +16,12 @@ export const sequelize = new Sequelize(
 )
 
 playlist(sequelize, DataTypes)
+playlistItem(sequelize, DataTypes)
 
 // Object.keys(models).forEach(key => {
 //     if ('associate' in models[key]) {
 //         models[key].associate(models);
 //     }
 // });
-
-console.log('hi', sequelize.models)
 
 // export default models;
