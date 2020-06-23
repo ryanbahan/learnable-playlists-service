@@ -1,5 +1,5 @@
 const playlist = (sequelize, DataTypes) => {
-    const Playlist = sequelize.define('playlist', {
+    const Playlist = sequelize.define('playlists', {
         user_id: {
             primaryKey: true,
             type: DataTypes.STRING(150),

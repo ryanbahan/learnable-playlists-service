@@ -1,7 +1,7 @@
-import playlist from './playlist';
-import playlistItem from './playlistItem';
+import playlists from './playlists';
+import playlistItems from './playlistItems';
 
 export default {
-    playlist,
-    playlistItem,
+    playlists,
+    playlistItems,
 };

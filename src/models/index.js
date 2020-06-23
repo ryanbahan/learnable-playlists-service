@@ -1,4 +1,5 @@
-import Sequelize from 'sequelize';
+import Sequelize, { DataTypes } from 'sequelize';
+import playlist from './playlist'
 
 export const sequelize = new Sequelize(
     process.env.DATABASE,
@@ -13,16 +14,14 @@ export const sequelize = new Sequelize(
     }
 )
 
-const models = {
-    Playlist: sequelize.import('./playlist'),
-};
+playlist(sequelize, DataTypes)
 
-Object.keys(models).forEach(key => {
-    if ('associate' in models[key]) {
-        models[key].associate(models);
-    }
-});
+// Object.keys(models).forEach(key => {
+//     if ('associate' in models[key]) {
+//         models[key].associate(models);
+//     }
+// });
 
-// console.log('hi', sequelize.models.playlist)
+console.log('hi', sequelize.models)
 
-export default models;
+// export default models;
