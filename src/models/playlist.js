@@ -12,6 +12,7 @@ const playlist = (sequelize, DataTypes) => {
             primaryKey: true,
             allowNull: false,
             unique: true,
+            autoIncrement: true,
         },
         title: {
             allowNull: false,
@@ -28,10 +29,12 @@ const playlist = (sequelize, DataTypes) => {
         created_at: {
             allowNull: false,
             type: DataTypes.DATE,
+            defaultValue: new Date(),
         },
         updated_at: {
             allowNull: false,
             type: DataTypes.DATE,
+            defaultValue: new Date(),
         },
     }, {
         timestamps: false,
