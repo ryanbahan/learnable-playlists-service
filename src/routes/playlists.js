@@ -7,7 +7,8 @@ router.get('/:id', async (req, res) => {
     const playlists = await sequelize.models.playlists.findAll({
         where: {
             user_id: req.params.id
-        }
+        },
+        include: sequelize.models.playlist_items
     });
 
     if (playlists.length) {

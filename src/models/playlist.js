@@ -1,7 +1,6 @@
 const playlist = (sequelize, DataTypes) => {
     const Playlist = sequelize.define('playlists', {
         user_id: {
-            primaryKey: true,
             type: DataTypes.STRING(150),
             allowNull: false,
             validate: {
@@ -10,6 +9,7 @@ const playlist = (sequelize, DataTypes) => {
         },
         id: {
             type: DataTypes.BIGINT,
+            primaryKey: true,
             allowNull: false,
             unique: true,
         },

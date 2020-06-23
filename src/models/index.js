@@ -18,10 +18,13 @@ export const sequelize = new Sequelize(
 playlist(sequelize, DataTypes)
 playlistItem(sequelize, DataTypes)
 
+sequelize.models.playlists.hasMany(sequelize.models.playlist_items, {
+    foreignKey: {
+        name: 'playlist_id'
+    }});
+
 // Object.keys(models).forEach(key => {
 //     if ('associate' in models[key]) {
 //         models[key].associate(models);
 //     }
 // });
-
-// export default models;

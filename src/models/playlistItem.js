@@ -1,7 +1,6 @@
 const playlistItem = (sequelize, DataTypes) => {
     const PlaylistItem = sequelize.define('playlist_items', {
         playlist_id: {
-            primaryKey: true,
             unique: true,
             type: DataTypes.BIGINT,
             allowNull: false,
@@ -10,6 +9,7 @@ const playlistItem = (sequelize, DataTypes) => {
             },
         },
         id: {
+            primaryKey: true,
             type: DataTypes.BIGINT,
             allowNull: false,
             unique: true,
