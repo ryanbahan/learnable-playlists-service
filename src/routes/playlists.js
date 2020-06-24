@@ -53,4 +53,23 @@ router.delete('/:playlist_id', async (req, res) => {
     }
 });
 
+router.patch('/:playlist_id', async (req, res) => {
+    try {
+        const playlist = await sequelize.models.playlists.findOne({
+            where: {
+                id: req.params.playlist_id
+            }
+        });
+
+        playlist.update(
+            req.body,
+            { returning: true }
+        );
+
+        return res.send(JSON.stringify(playlist));
+    } catch (err) {
+        return res.send(JSON.stringify(err));
+    }
+});
+
 export default router;
