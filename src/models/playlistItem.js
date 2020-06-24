@@ -1,12 +1,8 @@
 const playlistItem = (sequelize, DataTypes) => {
     const PlaylistItem = sequelize.define('playlist_items', {
         playlist_id: {
-            unique: true,
             type: DataTypes.BIGINT,
             allowNull: false,
-            validate: {
-                notEmpty: true,
-            },
         },
         id: {
             primaryKey: true,

@@ -17,4 +17,21 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const playlistItem = await sequelize.models.playlist_items.create(
+            {
+                playlist_id: req.body.playlist_id,
+                title: req.body.title,
+                category: req.body.category,
+                url: req.body.url,
+                is_complete: req.body.is_complete,
+            }
+        );
+        return res.send(JSON.stringify(playlistItem));
+    } catch (err) {
+        return res.send(JSON.stringify(err));
+    }
+});
+
 export default router;

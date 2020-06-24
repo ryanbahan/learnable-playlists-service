@@ -25,7 +25,7 @@ router.post('/:user_id', async (req, res) => {
         { 
             user_id: req.body.user_id, 
             title: req.body.title, 
-            status: req.body.status, 
+            status: "active", 
             due_date: req.body.due_date,
         }
     );
