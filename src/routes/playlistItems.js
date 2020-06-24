@@ -34,4 +34,30 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    try {
+        const playlistItem = await sequelize.models.playlist_items.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        playlistItem.update(
+            { 
+                playlist_id: req.body.playlist_id,
+                id: req.params.id,
+                title: req.body.title,
+                category: req.body.category,
+                url: req.body.url,
+                is_complete: req.body.is_complete,
+            },
+            { returning: true }
+        );
+
+        return res.send(JSON.stringify(playlistItem));
+    } catch (err) {
+        return res.send(JSON.stringify(err));
+    }
+});
+
 export default router;
