@@ -19,12 +19,13 @@ playlist(sequelize, DataTypes)
 playlistItem(sequelize, DataTypes)
 
 sequelize.models.playlists.hasMany(sequelize.models.playlist_items, {
-    foreignKey: {
-        name: 'playlist_id'
-    }});
+    onDelete: 'CASCADE',
+    hooks: true,
+    foreignKey: 'playlist_id',
+    });
 
-// Object.keys(models).forEach(key => {
-//     if ('associate' in models[key]) {
-//         models[key].associate(models);
-//     }
-// });
+Object.keys(sequelize.models).forEach(key => {
+    if ('associate' in sequelize.models[key]) {
+        sequelize.models[key].associate(sequelize.models);
+    }
+});

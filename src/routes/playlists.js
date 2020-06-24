@@ -32,4 +32,25 @@ router.post('/:user_id', async (req, res) => {
     return res.send(JSON.stringify(playlist))
 });
 
+router.delete('/:playlist_id', async (req, res) => {
+
+    try {
+        sequelize.models.playlist_items.destroy({
+            where: {
+                playlist_id: req.params.playlist_id,
+            }
+        })
+
+        sequelize.models.playlists.destroy({
+            where: {
+                id: req.params.playlist_id,
+            }
+        })
+
+        return res.send(`Playlist ${req.params.playlist_id} successfully deleted`)
+    } catch (err) {
+        return res.send(JSON.stringify(err))
+    }
+});
+
 export default router;
