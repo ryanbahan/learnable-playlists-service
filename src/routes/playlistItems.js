@@ -42,6 +42,8 @@ router.put('/:id', async (req, res) => {
             }
         });
 
+        console.log(playlistItem, 'ITEM')
+
         playlistItem.update(
             { 
                 playlist_id: req.body.playlist_id,
