@@ -3,11 +3,11 @@ import { sequelize } from '../models';
 
 const router = Router();
 
-router.get('/:user_id', async (req, res) => {
+router.get('/:collection_id', async (req, res) => {
     const playlists = {
         data: await sequelize.models.playlists.findAll({
             where: {
-                user_id: req.params.user_id
+                collection_id: req.params.collection_id
             },
             include: sequelize.models.playlist_items
         })
@@ -20,10 +20,10 @@ router.get('/:user_id', async (req, res) => {
     }
 });
 
-router.post('/:user_id', async (req, res) => {
+router.post('/:collection_id', async (req, res) => {
     const playlist = await sequelize.models.playlists.create(
         { 
-            user_id: req.body.user_id, 
+            collection_id: req.body.collection_id, 
             title: req.body.title, 
             status: "active", 
             due_date: req.body.due_date,

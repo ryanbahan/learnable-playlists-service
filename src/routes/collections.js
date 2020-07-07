@@ -31,26 +31,41 @@ router.post('/:user_id', async (req, res) => {
     return res.send(JSON.stringify(collection))
 });
 
-// router.delete('/:playlist_id', async (req, res) => {
+router.delete('/:collection_id', async (req, res) => {
+    try {
+        const playlist = {
+            data: await sequelize.models.playlists.findOne({
+                where: {
+                    collection_id: req.params.collection_id
+                },
+            })
+        };
 
-//     try {
-//         sequelize.models.playlist_items.destroy({
-//             where: {
-//                 playlist_id: req.params.playlist_id,
-//             }
-//         })
+        const playlistID = playlist.data.dataValues.id
 
-//         sequelize.models.playlists.destroy({
-//             where: {
-//                 id: req.params.playlist_id,
-//             }
-//         })
+        await sequelize.models.playlist_items.destroy({
+            where: {
+                playlist_id: playlistID,
+            }
+        })
 
-//         return res.send(`Playlist ${req.params.playlist_id} successfully deleted`)
-//     } catch (err) {
-//         return res.send(JSON.stringify(err))
-//     }
-// });
+        await sequelize.models.playlists.destroy({
+            where: {
+                collection_id: req.params.collection_id,
+            }
+        })
+
+        await sequelize.models.collections.destroy({
+            where: {
+                id: req.params.collection_id,
+            }
+        })
+
+        return res.send(`Collection ${req.params.collection_id} successfully deleted`)
+    } catch (err) {
+        return res.send(JSON.stringify(err))
+    }
+});
 
 // router.patch('/:playlist_id', async (req, res) => {
 //     try {

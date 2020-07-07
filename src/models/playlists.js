@@ -1,6 +1,6 @@
 const playlists = (sequelize, DataTypes) => {
     const Playlist = sequelize.define('playlists', {
-        user_id: {
+        collection_id: {
             type: DataTypes.STRING(150),
             allowNull: false,
             validate: {
