@@ -16,6 +16,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/collections', routes.collections);
 app.use('/playlists', routes.playlists);
 app.use('/playlistItems', routes.playlistItems);
 

@@ -1,5 +1,5 @@
-const playlist = (sequelize, DataTypes) => {
-    const Playlist = sequelize.define('playlists', {
+const collections = (sequelize, DataTypes) => {
+    const Collection = sequelize.define('collections', {
         user_id: {
             type: DataTypes.STRING(150),
             allowNull: false,
@@ -22,10 +22,6 @@ const playlist = (sequelize, DataTypes) => {
             allowNull: false,
             type: DataTypes.STRING(150),
         },
-        due_date: {
-            allowNull: false,
-            type: DataTypes.STRING(20),
-        },
         created_at: {
             allowNull: false,
             type: DataTypes.DATE,
@@ -42,15 +38,7 @@ const playlist = (sequelize, DataTypes) => {
         freezeTableName: true,
     });
 
-    Playlist.findByUserId = async userId => {
-        let playlist = await User.findOne({
-            where: { user_id: userId },
-        });
-
-        return playlist;
-    };
-
-    return Playlist;
+    return Collection;
 };
 
-export default playlist;
+export default collections;

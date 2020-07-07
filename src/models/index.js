@@ -1,6 +1,7 @@
 import Sequelize, { DataTypes } from 'sequelize';
-import playlist from './playlist'
-import playlistItem from './playlistItem'
+import playlists from './playlists'
+import playlistItems from './playlistItems'
+import collections from './collections'
 
 export const sequelize = new Sequelize(
     process.env.DATABASE,
@@ -15,14 +16,17 @@ export const sequelize = new Sequelize(
     }
 )
 
-playlist(sequelize, DataTypes)
-playlistItem(sequelize, DataTypes)
+collections(sequelize, DataTypes)
+playlists(sequelize, DataTypes)
+playlistItems(sequelize, DataTypes)
+
+sequelize.models.collections.hasMany(sequelize.models.playlists, {
+    foreignKey: 'collection_id',
+});
 
 sequelize.models.playlists.hasMany(sequelize.models.playlist_items, {
-    onDelete: 'CASCADE',
-    hooks: true,
     foreignKey: 'playlist_id',
-    });
+});
 
 Object.keys(sequelize.models).forEach(key => {
     if ('associate' in sequelize.models[key]) {

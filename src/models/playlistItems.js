@@ -1,4 +1,4 @@
-const playlistItem = (sequelize, DataTypes) => {
+const playlistItems = (sequelize, DataTypes) => {
     const PlaylistItem = sequelize.define('playlist_items', {
         playlist_id: {
             type: DataTypes.BIGINT,
@@ -45,4 +45,4 @@ const playlistItem = (sequelize, DataTypes) => {
     return PlaylistItem;
 };
 
-export default playlistItem;
+export default playlistItems;
