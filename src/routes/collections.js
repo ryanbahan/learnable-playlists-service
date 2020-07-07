@@ -20,14 +20,15 @@ router.get('/:user_id', async (req, res) => {
 });
 
 router.post('/:user_id', async (req, res) => {
-    const playlist = await sequelize.models.collections.create(
+    const collection = await sequelize.models.collections.create(
         {
             user_id: req.params.user_id,
             title: req.body.title,
             status: "active",
         }
     );
-    return res.send(JSON.stringify(playlist))
+    
+    return res.send(JSON.stringify(collection))
 });
 
 // router.delete('/:playlist_id', async (req, res) => {
