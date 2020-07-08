@@ -33,6 +33,7 @@ router.post('/:user_id', async (req, res) => {
 
 router.delete('/:collection_id', async (req, res) => {
     try {
+        console.log("before")
         const playlist = {
             data: await sequelize.models.playlists.findOne({
                 where: {
@@ -41,19 +42,21 @@ router.delete('/:collection_id', async (req, res) => {
             })
         };
 
-        const playlistID = playlist.data.dataValues.id
+        if (playlist.data) {
+            const playlistID = playlist.data.dataValues.id
 
-        await sequelize.models.playlist_items.destroy({
-            where: {
-                playlist_id: playlistID,
-            }
-        })
+            await sequelize.models.playlist_items.destroy({
+                where: {
+                    playlist_id: playlistID,
+                }
+            })
 
-        await sequelize.models.playlists.destroy({
-            where: {
-                collection_id: req.params.collection_id,
-            }
-        })
+            await sequelize.models.playlists.destroy({
+                where: {
+                    collection_id: req.params.collection_id,
+                }
+            })
+        }
 
         await sequelize.models.collections.destroy({
             where: {

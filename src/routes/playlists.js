@@ -16,7 +16,7 @@ router.get('/:collection_id', async (req, res) => {
     if (playlists.data.length) {
         return res.send(JSON.stringify(playlists))
     } else {
-        return res.send("Nothing matched your query")
+        return res.send(JSON.stringify(null))
     }
 });
 
